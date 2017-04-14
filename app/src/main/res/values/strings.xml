@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DTU FEED</string>
+
+    <!-- Title text for the empty view, which describes the empty dog house image [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">No New Events Right Now...</string>
+
+    <string name="openDrawer">Open navigation drawer</string>
+    <string name="closeDrawer">Close navigation drawer</string>
+
+
+</resources>

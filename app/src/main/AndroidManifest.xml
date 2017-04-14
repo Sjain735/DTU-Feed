@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yatin.whatshappeningdtu">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".StartParse"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".EnterCloudEvent"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CloudEvents"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".MySchedule"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity
+            android:name=".LoginScreen"
+            android:screenOrientation="portrait" />
+        <activity android:name=".DceSpeaksUp" />
+        <activity android:name=".DTUSA" />
+        <activity android:name=".DTUFreshers" />
+        <activity
+            android:name=".AboutDeveloper"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutApp"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".DTUTimes" />
+        <activity android:name=".DTUCC" />
+        <activity android:name=".AboutMySchedule"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".AboutCloudEvents"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat"></activity>
+    </application>
+
+</manifest>
