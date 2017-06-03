@@ -69,20 +69,20 @@ public class CloudEvents extends AppCompatActivity {
         final ArrayList<String> cloudEvents = new ArrayList<>();
         //final CloudArrayAdapter cloudArrayAdapter = new CloudArrayAdapter(getApplicationContext(),R.layout.typeview1,cloudEvents);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, cloudEvents) {
+                android.R.layout.simple_list_item_checked, cloudEvents) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.typeview1,parent,false);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
+               // TextView text = (TextView) view.findViewById(android.R.id.text1);
                // TextView text2 = (TextView)view.findViewById(R.id.textView) ;
                // text.setText(text2.toString());
-              text.setTextColor(Color.WHITE);
-                text.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
-                text.setTextSize(20);
+             // text.setTextColor(Color.WHITE);
+              //  text.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
+                //text.setTextSize(20);
                 //parent.setBackgroundResource(R.drawable.rectangle3);
-                text.setBackgroundResource(R.drawable.border);
-                text.setPadding(10,10,5,10);
+                //text.setBackgroundResource(R.drawable.border);
+                //text.setPadding(10,10,5,10);
                 return view;
             }
         };
@@ -103,7 +103,7 @@ public class CloudEvents extends AppCompatActivity {
                             venue = String.valueOf(object.get("venue"));
                             description = String.valueOf(object.get("description"));
                             item = String.valueOf(object.get("Item"));
-                            cloudEvents.add(item);
+                            cloudEvents.add(name);
                             object.saveInBackground();
                         }
                         arrayAdapter.notifyDataSetChanged();
@@ -111,6 +111,8 @@ public class CloudEvents extends AppCompatActivity {
 
                 }
             });
+            //ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Blogs");
+            //  parseQuery.whereEqualTo("url","true");
         //Toast.makeText(this,"Long Press To Save Onto Your Schedule",Toast.LENGTH_SHORT).show();
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }else{

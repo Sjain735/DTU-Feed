@@ -27,9 +27,9 @@
             android:name=".EnterCloudEvent"
             android:screenOrientation="portrait" />
         <activity android:name=".CloudEvents"
-            android:theme="@style/Theme.AppCompat"/>
+           />
         <activity android:name=".MySchedule"
-            android:theme="@style/Theme.AppCompat"/>
+            />
         <activity
             android:name=".LoginScreen"
             android:screenOrientation="portrait" />
@@ -50,7 +50,7 @@
             android:theme="@style/Theme.AppCompat"/>
         <activity android:name=".AboutCloudEvents"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat"></activity>
+            ></activity>
     </application>
 
 </manifest>
