@@ -62,7 +62,7 @@ public class DTUSA extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                Intent intent = new Intent(DTUSA.this, MainActivity.class);
+                Intent intent = new Intent(DTUSA.this, CloudEvents.class);
                 startActivity(intent);
                 break;
         }

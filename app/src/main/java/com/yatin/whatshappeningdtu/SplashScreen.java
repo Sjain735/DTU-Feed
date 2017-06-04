@@ -26,7 +26,7 @@ public class SplashScreen extends Activity
             public void run()
             {
                 SplashScreen.this.finish();
-                startActivity(new Intent(SplashScreen.this,MainActivity.class));
+                startActivity(new Intent(SplashScreen.this,CloudEvents.class));
             }
         }, DELAY);
         scheduled = true;

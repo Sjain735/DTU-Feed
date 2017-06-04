@@ -17,7 +17,14 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,6 +62,10 @@ public class CloudEvents extends AppCompatActivity {
      String venue;
      String description;
     String item;
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
+    String value ;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -65,11 +76,11 @@ public class CloudEvents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cloud_events);
         setTitle("Cloud Events");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final ArrayList<String> cloudEvents = new ArrayList<>();
         //final CloudArrayAdapter cloudArrayAdapter = new CloudArrayAdapter(getApplicationContext(),R.layout.typeview1,cloudEvents);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_checked, cloudEvents) {
+                android.R.layout.simple_list_item_1, cloudEvents) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
@@ -111,9 +122,7 @@ public class CloudEvents extends AppCompatActivity {
 
                 }
             });
-            //ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Blogs");
-            //  parseQuery.whereEqualTo("url","true");
-        //Toast.makeText(this,"Long Press To Save Onto Your Schedule",Toast.LENGTH_SHORT).show();
+
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }else{
             Toast.makeText(this,"No Internet Connection",Toast.LENGTH_LONG).show();
@@ -123,12 +132,109 @@ public class CloudEvents extends AppCompatActivity {
 //////////////////////////////////////////////////////////////////////////////////
         View emptyView = findViewById(R.id.empty_view);
         listView.setEmptyView(emptyView);
-/////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CloudEvents.this,DetailsActivity.class);
+                String itemAtPosition = parent.getItemAtPosition(position).toString();
+                intent.putExtra("key",itemAtPosition);
+                startActivity(intent);
+            }
+        });
+//////////////////////////////////////////////////////////////////////////////////////////////
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CloudEvents.this,MySchedule.class);
+                startActivity(intent);
 
+            }
+        });
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        toolbar.setTitle("Main Menu");
+        //  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        //        .setAction("Action", null).show();
+        //Initializing NavigationView
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if(item.isChecked()) item.setChecked(false);
+                else item.setChecked(true);
+                //Closing drawer on item click
+                drawerLayout.closeDrawers();
+
+                switch (item.getItemId()){
+
+                    case R.id.navigationItem1:
+                        Intent intent = new Intent(CloudEvents.this,DceSpeaksUp.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.navigationItem2:
+                        Intent intent1 = new Intent(CloudEvents.this,DTUSA.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.navigationItem3:
+                        Intent intent2 = new Intent(CloudEvents.this, DTUFreshers.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.navigationItem4:
+                        Intent intent6 = new Intent(CloudEvents.this,DTUCC.class);
+                        startActivity(intent6);
+                        break;
+                    case R.id.navigationItem5:
+                        Intent intent3 = new Intent(CloudEvents.this,DTUTimes.class);
+                        startActivity(intent3);
+                        break;
+                    case R.id.aboutDeveloper:
+                        Intent intent4 = new Intent(CloudEvents.this,AboutDeveloper.class);
+                        startActivity(intent4);
+                        break;
+                    case R.id.aboutApp:
+                        Intent intent5 = new Intent(CloudEvents.this,AboutApp.class);
+                        startActivity(intent5);
+                        break;
+
+                }
+
+                return true;
+            }
+        });
+        // Initializing Drawer Layout and ActionBarToggle
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.openDrawer, R.string.closeDrawer){
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
 ///////////////////////////////////////////////////////////////////////////////////////
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, final long id) {
+
 
                 new AlertDialog.Builder(CloudEvents.this)
                         .setIcon(R.drawable.save_icon)
@@ -141,11 +247,23 @@ public class CloudEvents extends AppCompatActivity {
                                 Toast.makeText(CloudEvents.this, "Saved", Toast.LENGTH_SHORT).show();
 
                                 String itemAtPosition = parent.getItemAtPosition(position).toString();
-                                Intent intent = new Intent(CloudEvents.this, MySchedule.class);
-                                DbHandler db = new DbHandler(getApplicationContext());
-                                db.store_item(itemAtPosition);
-                                db.close();
-                                startActivity(intent);
+                                ParseQuery<ParseObject> query = ParseQuery.getQuery("Events");
+                                query.whereEqualTo("Name", itemAtPosition);
+                                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                                    public void done(ParseObject object, ParseException e) {
+                                        if (object == null) {
+                                            Toast.makeText(getApplicationContext(),"Save fail",Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            value = String.valueOf(object.get("Item"));
+                                            Intent intent = new Intent(CloudEvents.this, MySchedule.class);
+                                            DbHandler db = new DbHandler(getApplicationContext());
+                                            db.store_item(value);
+                                            db.close();
+                                            startActivity(intent);
+                                        }
+                                    }
+                                });
+
 
                             }
                         })

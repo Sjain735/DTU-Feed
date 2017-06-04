@@ -31,7 +31,7 @@ public class AboutDeveloper extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                Intent intent = new Intent(AboutDeveloper.this, MainActivity.class);
+                Intent intent = new Intent(AboutDeveloper.this, CloudEvents.class);
                 startActivity(intent);
                 break;
         }

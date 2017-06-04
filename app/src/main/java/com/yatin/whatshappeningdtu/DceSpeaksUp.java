@@ -63,7 +63,7 @@ public class DceSpeaksUp extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                Intent intent = new Intent(DceSpeaksUp.this, MainActivity.class);
+                Intent intent = new Intent(DceSpeaksUp.this, CloudEvents.class);
                 startActivity(intent);
                 break;
         }

@@ -52,6 +52,7 @@ public class MySchedule extends AppCompatActivity {
         ActionBar actionBar = getActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         setTitle("Schedule");
         //Toast.makeText(this,"Long Press on any event to delete",Toast.LENGTH_SHORT).show();
         //listLayout =  (RelativeLayout)findViewById(R.id.listLayout);
@@ -152,7 +153,7 @@ public class MySchedule extends AppCompatActivity {
                 startActivity(intent3);
                 break;
             case android.R.id.home:
-                Intent intent1 = new Intent(MySchedule.this, MainActivity.class);
+                Intent intent1 = new Intent(MySchedule.this, CloudEvents.class);
                 startActivity(intent1);
                 break;
         }

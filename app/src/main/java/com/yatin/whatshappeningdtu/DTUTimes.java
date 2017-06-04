@@ -62,7 +62,7 @@ public class DTUTimes extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                Intent intent = new Intent(DTUTimes.this, MainActivity.class);
+                Intent intent = new Intent(DTUTimes.this, CloudEvents.class);
                 startActivity(intent);
                 break;
         }

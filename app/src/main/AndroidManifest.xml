@@ -11,23 +11,26 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
+        android:theme="@style/AppTheme"
+        >
+        <activity android:name=".SplashScreen"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CloudEvents"
+            android:theme="@style/AppTheme."/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme." />
         <activity
             android:name=".EnterCloudEvent"
             android:screenOrientation="portrait" />
-        <activity android:name=".CloudEvents"
-           />
+
         <activity android:name=".MySchedule"
             />
         <activity
@@ -42,14 +45,17 @@
         <activity
             android:name=".AboutApp"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat"/>
+            />
         <activity android:name=".DTUTimes" />
         <activity android:name=".DTUCC" />
-        <activity android:name=".AboutMySchedule"
+        <activity
+            android:name=".AboutMySchedule"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat"/>
-        <activity android:name=".AboutCloudEvents"
-            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".AboutCloudEvents"
+            android:screenOrientation="portrait" />
+        <activity android:name=".DetailsActivity"
             ></activity>
     </application>
 

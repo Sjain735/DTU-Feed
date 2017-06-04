@@ -31,7 +31,7 @@ public class AboutApp extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                Intent intent = new Intent(AboutApp.this, MainActivity.class);
+                Intent intent = new Intent(AboutApp.this, CloudEvents.class);
                 startActivity(intent);
                 break;
         }
