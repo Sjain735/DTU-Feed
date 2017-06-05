@@ -27,6 +27,10 @@
             android:title="DTU TIMES"
             android:checked="false"/>
         <item
+            android:id="@+id/navigationItem6"
+            android:title="RELATABLE DTU MEMES"
+            android:checked="false"/>
+        <item
             android:id="@+id/menu2"
             android:title="Communicate">
             <menu>

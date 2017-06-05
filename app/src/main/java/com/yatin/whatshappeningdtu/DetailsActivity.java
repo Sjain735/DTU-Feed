@@ -38,6 +38,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         setTitle("Details");
+        Toast.makeText(getApplicationContext(),"Loading...", Toast.LENGTH_SHORT).show();
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
         final TextView societyTextView = (TextView) findViewById(R.id.societyTextView);
         final TextView dateTextView = (TextView) findViewById(R.id.dateTextView);

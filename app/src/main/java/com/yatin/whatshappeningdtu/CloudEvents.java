@@ -198,6 +198,10 @@ public class CloudEvents extends AppCompatActivity {
                         Intent intent3 = new Intent(CloudEvents.this,DTUTimes.class);
                         startActivity(intent3);
                         break;
+                    case R.id.navigationItem6:
+                        Intent intent7 = new Intent(CloudEvents.this,Memes.class);
+                        startActivity(intent7);
+                        break;
                     case R.id.aboutDeveloper:
                         Intent intent4 = new Intent(CloudEvents.this,AboutDeveloper.class);
                         startActivity(intent4);
