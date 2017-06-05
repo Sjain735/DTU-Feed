@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +66,12 @@ public class CloudEvents extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
-    String value ;
+    String valueName ;
+    String valueSociety;
+    String valueDate;
+    String valueTime;
+    String valueVenue;
+    String value;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -75,7 +81,7 @@ public class CloudEvents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cloud_events);
-        setTitle("Cloud Events");
+        setTitle("EVENTS");
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final ArrayList<String> cloudEvents = new ArrayList<>();
         //final CloudArrayAdapter cloudArrayAdapter = new CloudArrayAdapter(getApplicationContext(),R.layout.typeview1,cloudEvents);
@@ -84,16 +90,14 @@ public class CloudEvents extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-                //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.typeview1,parent,false);
-               // TextView text = (TextView) view.findViewById(android.R.id.text1);
-               // TextView text2 = (TextView)view.findViewById(R.id.textView) ;
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
                // text.setText(text2.toString());
-             // text.setTextColor(Color.WHITE);
-              //  text.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
-                //text.setTextSize(20);
+                 text.setTextColor(Color.BLACK);
+                 text.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
+                 text.setTextSize(30);
                 //parent.setBackgroundResource(R.drawable.rectangle3);
                 //text.setBackgroundResource(R.drawable.border);
-                //text.setPadding(10,10,5,10);
+                text.setPadding(10,10,10,10);
                 return view;
             }
         };
@@ -126,6 +130,7 @@ public class CloudEvents extends AppCompatActivity {
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }else{
             Toast.makeText(this,"No Internet Connection",Toast.LENGTH_LONG).show();
+
         }
         final ListView listView = (ListView) findViewById(R.id.cloudListView);
         listView.setAdapter(arrayAdapter);
@@ -244,7 +249,7 @@ public class CloudEvents extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                Toast.makeText(CloudEvents.this, "Saved", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CloudEvents.this, "Saving...", Toast.LENGTH_SHORT).show();
 
                                 String itemAtPosition = parent.getItemAtPosition(position).toString();
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Events");
@@ -254,7 +259,14 @@ public class CloudEvents extends AppCompatActivity {
                                         if (object == null) {
                                             Toast.makeText(getApplicationContext(),"Save fail",Toast.LENGTH_SHORT).show();
                                         } else {
-                                            value = String.valueOf(object.get("Item"));
+                                            valueName = String.valueOf(object.get("Name"));
+                                            valueDate = String.valueOf(object.get("date"));
+                                           valueSociety = String.valueOf(object.get("Society"));
+                                           valueTime = String.valueOf(object.get("time"));
+                                           valueVenue = String.valueOf(object.get("venue"));
+                                           // value = String.valueOf(object.get("Item"));
+                                            value ="NAME: "+ valueName + "\n" +"SOCIETY: "+ valueSociety + "\n" +"DATE: "
+                                                    + valueDate + "\n" +"TIME: "+ valueTime + "\n" +"VENUE: "+ valueVenue;
                                             Intent intent = new Intent(CloudEvents.this, MySchedule.class);
                                             DbHandler db = new DbHandler(getApplicationContext());
                                             db.store_item(value);
@@ -269,12 +281,12 @@ public class CloudEvents extends AppCompatActivity {
                         })
                         .setNegativeButton("No", null)
                         //Developer Feature Only !
-                    /*  .setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+                    /* .setNeutralButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String itemAtPosition = parent.getItemAtPosition(position).toString();
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Events");
-                                query.whereEqualTo("Item", itemAtPosition);
+                                query.whereEqualTo("Name", itemAtPosition);
                                 query.findInBackground(new FindCallback<ParseObject>() {
                                     @Override
                                     public void done(List<ParseObject> objects, ParseException e) {

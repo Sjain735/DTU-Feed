@@ -41,11 +41,10 @@ public class EnterCloudEvent extends AppCompatActivity {
 
     }else {
         String item;
-        if(description.equals("")){
-         item = name + "\n" + society + "\n" + date + "\n" + time + "\n" + venue;
-        }else{
-            item = name + "\n" + society + "\n" + date + "\n" + time + "\n" + venue + "\n" + description;
-        }
+
+        item ="NAME:"+ name + "\n" +"SOCIETY:"+ society + "\n" +"DATE:"+ date + "\n" +"TIME"+ time + "\n" +"VENUE:"+ venue;
+
+
 
         ParseObject events = new ParseObject(className);
         events.put("Name", name);
